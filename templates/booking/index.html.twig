@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+  <div class="bg-[url('/imgs/hero-2.png')] bg-cover bg-bottom w-full h-auto">
+    <div class="max-w-screen-xl mx-auto px-4">
+      {{ include('_navigation.html.twig') }}
+      <h1 class="text-6xl mt-20 pb-8">Upcoming Trips</h1>
+    </div>
+  </div>
+  <div class="max-w-screen-xl mx-auto px-4">
+    {% for booking in upcoming %}
+      <div
+          class="grid grid-cols-1 md:grid-cols-3 bg-[#1F2732] border-2 border-white/20 rounded-[20px] mt-2 pb-4 md:pb-0">
+        <div class="md:col-span-2 pl-4 lg:pl-16 pt-4 min-[901px]:pt-8 order-last md:order-first">
+          <h2 class="text-2xl min-[901px]:text-[42px]">{{ booking.trip.name }}</h2>
+          <p class="opacity-60 pt-2">{{ booking.trip.tagLine }}</p>
+          <p>When: {{ booking.date.format('l, F j, Y') }}</p>
+          <a href="{{ path('booking_show', {uid: booking.uid}) }}"
+             class="inline-block text-center rounded-[45px] bg-[#009BE3] mt-8 lg:mt-10 p-3 lg:p-4 text-sm lg:text-lg font-semibold text-white shadow-sm hover:bg-[#0082CA] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Manage
+            Booking</a>
+        </div>
+        <div>
+          <img class="rounded-tr-[20px] rounded-tl-[20px] md:rounded-r-[20px] md:rounded-tl-none "
+               src="{{ path('trip_image', {slug: booking.trip.slug}) }}"/>
+        </div>
+      </div>
+    {% else %}
+      <div class="mt-6"><em>No trips are currently booked</em></div>
+      <a href="{{ path('home') }}"
+         class="inline-block text-center rounded-[45px] bg-[#009BE3] mt-8 lg:mt-10 p-3 lg:p-4 text-sm lg:text-lg font-semibold text-white shadow-sm hover:bg-[#0082CA] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Find
+        your next adventure</a>
+    {% endfor %}
+
+    <h1 class="text-4xl mt-14 pb-6">Past Trips</h1>
+    {% for booking in previous %}
+      <div
+          class="grid grid-cols-1 md:grid-cols-3 bg-[#1F2732] border-2 border-white/20 rounded-[20px] mt-2 pb-4 md:pb-0">
+        <div class="md:col-span-2 pl-4 lg:pl-16 pt-4 min-[901px]:pt-8 order-last md:order-first">
+          <h2 class="text-2xl min-[901px]:text-[42px]">{{ booking.trip.name }}</h2>
+          <p class="opacity-60 pt-2">{{ booking.trip.tagLine }}</p>
+        </div>
+        <div>
+          <img class="rounded-tr-[20px] rounded-tl-[20px] md:rounded-r-[20px] md:rounded-tl-none "
+               src="{{ path('trip_image', {slug: booking.trip.slug}) }}"/>
+        </div>
+      </div>
+    {% else %}
+      <div><em>Your previous trips will show here after you're back from your first adventure with us!</em></div>
+    {% endfor %}
+  </div>
+{% endblock %}

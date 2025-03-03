@@ -1,0 +1,4 @@
+workers:
+    # Run tailwind:build --watch in the background when the server starts
+    tailwind:
+        cmd: ['symfony', 'console', 'tailwind:build', '--watch']

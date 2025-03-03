@@ -1,0 +1,32 @@
+<nav class="flex items-center justify-between flex-wrap py-6">
+  <div class="flex items-center flex-shrink-0 text-white mr-6">
+    <a href="{{ path('home') }}" class="font-semibold text-xl tracking-tight hover:text-[#6cc7cd]">Universal Travel</a>
+  </div>
+  <div class="block lg:hidden">
+    <button class="flex items-center px-3 py-2 border rounded border-white hover:text-[#6cc7cd] hover:border-[#6cc7cd]">
+      <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title>
+        <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/>
+      </svg>
+    </button>
+  </div>
+  <div class="hidden w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+    <div class="text-sm lg:flex-grow">
+      <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 hover:text-[#6cc7cd] mr-4">
+        Destinations
+      </a>
+      <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 hover:text-[#6cc7cd] mr-4">
+        Inspiration
+      </a>
+      <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 hover:text-[#6cc7cd]">
+        Journal
+      </a>
+    </div>
+    <div class="lg:flex gap-5 items-center">
+      <div class="mt-4 lg:mt-0 text-sm lg:text-base hover:text-[#6cc7cd] cursor-pointer">Login</div>
+      <button
+          class="mt-4 lg:mt-0 text-sm lg:text-base text-black bg-white p-1 lg:p-2 rounded-[45px] w-16 lg:w-[101px] text-center hover:bg-slate-200">
+        Signup
+      </button>
+    </div>
+  </div>
+</nav>
