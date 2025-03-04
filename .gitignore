@@ -24,4 +24,4 @@
 .phpunit.result.cache
 ###< phpunit/phpunit ###
 tutorial
-/.idea
+/.idea/
