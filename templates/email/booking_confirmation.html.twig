@@ -7,7 +7,11 @@
 
     <p>Departure {{ booking.date|date('Y-m-d') }}</p>
 
-    <p>Manage your booking {{ url('booking_show', {uid: booking.uid}) }}</p>
+    <p>
+      <a href="{{ url('booking_show', {uid: booking.uid}) }}">
+        Manage your booking
+      </a>
+    </p>
 
     <p>Regards,<br/>
     The Universal Travel Team
