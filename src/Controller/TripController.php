@@ -9,6 +9,7 @@ use App\Form\BookingType;
 use App\Repository\CustomerRepository;
 use App\Repository\TripRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -45,11 +46,16 @@ final class TripController extends AbstractController {
 			$em->persist($booking);
 			$em->flush();
 
-			$email = (new Email())
+			$email = (new TemplatedEmail())
 				->from(new Address('info@universal-travel.com', 'Universal Travel'))
 				->to(new Address($customer->getEmail(), $customer->getName()))
 				->subject('Booking Confirmation for ', $trip->getName())
-				->text('Your booking has been confirmed')
+				->textTemplate('email/booking_confirmation.txt.twig')
+				->context([
+					'customer' => $customer,
+					'trip' => $trip,
+					'booking' => $booking
+				])
 			;
 
 			$mailer->send($email);
