@@ -1,0 +1,10 @@
+Hey {{ customer.name|split(' ')|first }}
+
+Get ready for your trip to {{ trip.name }}
+
+Departure {{ booking.date|date('Y-m-d') }}
+
+Manage your booking {{ url('booking_show', {uid: booking.uid}) }}
+
+Regards,
+The Universal Travel Team
