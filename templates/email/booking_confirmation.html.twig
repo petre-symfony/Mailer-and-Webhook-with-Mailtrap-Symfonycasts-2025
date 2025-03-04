@@ -1,0 +1,16 @@
+<html>
+  <head></head>
+  <p>
+    <p>Hey {{ customer.name|split(' ')|first }}</p>
+
+    <p>Get ready for your trip to {{ trip.name }}</p>
+
+    <p>Departure {{ booking.date|date('Y-m-d') }}</p>
+
+    <p>Manage your booking {{ url('booking_show', {uid: booking.uid}) }}</p>
+
+    <p>Regards,<br/>
+    The Universal Travel Team
+    </p>
+  </body>
+</html>
