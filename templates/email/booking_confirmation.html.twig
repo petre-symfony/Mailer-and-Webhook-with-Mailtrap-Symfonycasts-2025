@@ -1,7 +1,11 @@
 <html>
-  <head></head>
+  <head>
+    <style>
+      .text-red {color: red}
+    </style>
+  </head>
   <p>
-    <p>Hey {{ customer.name|split(' ')|first }}</p>
+    <p class="text-red">Hey {{ customer.name|split(' ')|first }}</p>
 
     <p>Get ready for your trip to {{ trip.name }}</p>
 
