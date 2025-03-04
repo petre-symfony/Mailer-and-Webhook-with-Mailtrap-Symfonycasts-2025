@@ -1,23 +1,32 @@
-{% apply inline_css(source('@styles/foundation-emails.css'), source('@styles/email.css')) %}
-<html>
-  <head>
-  </head>
-  <p>
-    <p class="text-red">Hey {{ customer.name|split(' ')|first }}</p>
-
-    <p>Get ready for your trip to {{ trip.name }}</p>
-
-    <p>Departure {{ booking.date|date('Y-m-d') }}</p>
-
-    <p>
-      <a href="{{ url('booking_show', {uid: booking.uid}) }}">
-        Manage your booking
-      </a>
-    </p>
-
-    <p>Regards,<br/>
-    The Universal Travel Team
-    </p>
-  </body>
-</html>
+{% apply inky_to_html|inline_css(source('@styles/foundation-emails.css'), source('@styles/email.css')) %}
+  <container>
+    <row>
+      <columns>
+        <spacer size="40"></spacer>
+        <p class="accent-title">Get Ready for your trip to</p>
+        <h1 class="trip-name">{{ trip.name }}</h1>
+      </columns>
+    </row>
+    <row>
+      <columns>
+        <p class="accent-title">Departure: {{ booking.date|date('Y-m-d') }}</p>
+      </columns>
+    </row>
+    <row>
+      <columns>
+        <button class="expanded rounded center" href="{{ url('booking_show', {uid: booking.uid}) }}">
+          Manage Booking
+        </button>
+        <button class="expanded rounded center secondary" href="{{ url('bookings', {uid: customer.uid}) }}">
+          My Account
+        </button>
+      </columns>
+    </row>
+    <row>
+      <columns>
+        <p>We can't wait to see you there,</p>
+        <p>Your friends at Universal Travel</p>
+      </columns>
+    </row>
+  </container>
 {% endapply %}
