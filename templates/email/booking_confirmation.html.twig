@@ -5,6 +5,11 @@
         <spacer size="40"></spacer>
         <p class="accent-title">Get Ready for your trip to</p>
         <h1 class="trip-name">{{ trip.name }}</h1>
+        <img
+            class="trip-image float-center"
+            src="{{ email.image('@images/%s.png'|format(trip.slug)) }}"
+            alt="{{ trip.name }}"
+        >
       </columns>
     </row>
     <row>
