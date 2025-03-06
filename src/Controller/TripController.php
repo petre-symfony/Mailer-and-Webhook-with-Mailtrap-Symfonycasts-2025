@@ -52,6 +52,7 @@ final class TripController extends AbstractController {
 
 			$email = (new TemplatedEmail())
 				->to(new Address($customer->getEmail(), $customer->getName()))
+				->replyTo($user->email)
 				->subject('Booking Confirmation for ', $trip->getName())
 				->attachFromPath($termsPath, 'Terms of service.pdf')
 				->htmlTemplate('email/booking_confirmation.html.twig')
