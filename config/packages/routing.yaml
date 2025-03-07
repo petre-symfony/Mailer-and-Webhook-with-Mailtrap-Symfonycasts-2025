@@ -4,6 +4,14 @@ framework:
     # See https://symfony.com/doc/current/routing.html#generating-urls-in-commands
     default_uri: https://universal-travel.com
 
+when@dev:
+  parameters:
+    env(SYMFONY_PROJECT_DEFAULT_ROUTE_URL): 'http://localhost'
+
+  framework:
+    router:
+      default_uri: '%env(SYMFONY_PROJECT_DEFAULT_ROUTE_URL)%'
+
 when@prod:
   framework:
     router:
