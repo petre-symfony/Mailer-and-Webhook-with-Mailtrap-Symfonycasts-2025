@@ -14,6 +14,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Header\MetadataHeader;
+use Symfony\Component\Mailer\Header\TagHeader;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Mime\Email;
@@ -61,6 +63,10 @@ final class TripController extends AbstractController {
 					'booking' => $booking
 				])
 			;
+
+			$email->getHeaders()->add(new TagHeader('booking'));
+			$email->getHeaders()->add(new MetadataHeader('booking_uid', $booking->getUid()));
+			$email->getHeaders()->add(new MetadataHeader('customer_uid', $customer->getUid()));
 
 			$mailer->send($email);
 			
