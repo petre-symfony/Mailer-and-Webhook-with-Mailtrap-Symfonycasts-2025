@@ -10,9 +10,10 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Zenstruck\Browser\Test\HasBrowser;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
+use Zenstruck\Mailer\Test\InteractsWithMailer;
 
 class BookingTest extends KernelTestCase {
-	use ResetDatabase, Factories, HasBrowser;
+	use ResetDatabase, Factories, HasBrowser, InteractsWithMailer;
 
 	/**
 	 * @test
@@ -46,5 +47,8 @@ class BookingTest extends KernelTestCase {
 		BookingFactory::assert()
 			->count(1)
 			->exists(['trip' => $trip, 'customer' => CustomerFactory::first()]);
+
+		$this->mailer()
+			->assertSentEmailCount(1);
 	}
 }
