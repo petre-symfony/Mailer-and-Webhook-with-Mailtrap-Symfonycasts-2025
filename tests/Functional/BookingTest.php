@@ -28,6 +28,7 @@ class BookingTest extends KernelTestCase {
 		CustomerFactory::assert()->empty();
 
 		$this->browser()
+			->throwExceptions()
 			->visit('/trip/mars')
 			->assertSuccessful()
 			->fillField('Name', 'Bruce Wayne')
