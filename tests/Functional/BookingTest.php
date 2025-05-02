@@ -57,7 +57,6 @@ class BookingTest extends KernelTestCase {
 					->assertContains('Visit Mars')
 					->assertContains('/booking/'.BookingFactory::first()->getUid())
 					->assertHasFile('Terms of service.pdf')
-					->dd()
 				;
 
 			})
