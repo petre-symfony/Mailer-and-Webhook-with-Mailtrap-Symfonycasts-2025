@@ -20,7 +20,7 @@ class BookingTest extends KernelTestCase {
 	public function testCreateBooking(): void {
 		$trip = TripFactory::createOne([
 			'name' => 'Visit Mars',
-			'slug' => 'mars',
+			'slug' => 'iss',
 			'tagLine' => 'The red planet',
 		]);
 
@@ -29,7 +29,7 @@ class BookingTest extends KernelTestCase {
 
 		$this->browser()
 			->throwExceptions()
-			->visit('/trip/mars')
+			->visit('/trip/iss')
 			->assertSuccessful()
 			->fillField('Name', 'Bruce Wayne')
 			->fillField('Email', 'bruce@wayne-enterprises.com')
