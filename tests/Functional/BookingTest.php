@@ -11,6 +11,7 @@ use Zenstruck\Browser\Test\HasBrowser;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 use Zenstruck\Mailer\Test\InteractsWithMailer;
+use Zenstruck\Mailer\Test\TestEmail;
 
 class BookingTest extends KernelTestCase {
 	use ResetDatabase, Factories, HasBrowser, InteractsWithMailer;
@@ -50,7 +51,15 @@ class BookingTest extends KernelTestCase {
 
 		$this->mailer()
 			->assertSentEmailCount(1)
-			->assertEmailSentTo('bruce@wayne-enterprises.com', 'Booking Confirmation for Visit Mars')
+			->assertEmailSentTo('bruce@wayne-enterprises.com', function (TestEmail $email) {
+				$email
+					->assertSubject('Booking Confirmation for Visit Mars')
+					->assertContains('Visit Mars')
+					->assertContains('/booking/'.BookingFactory::first()->getUid())
+					->assertHasFile('Terms of service.pdf')
+				;
+
+			})
 		;
 	}
 }
