@@ -49,6 +49,8 @@ class BookingTest extends KernelTestCase {
 			->exists(['trip' => $trip, 'customer' => CustomerFactory::first()]);
 
 		$this->mailer()
-			->assertSentEmailCount(1);
+			->assertSentEmailCount(1)
+			->assertEmailSentTo('bruce@wayne-enterprises.com', 'Booking Confirmation for Visit Mars')
+		;
 	}
 }
