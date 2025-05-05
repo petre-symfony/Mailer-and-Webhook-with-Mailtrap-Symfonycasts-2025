@@ -1,0 +1,11 @@
+{% apply inky_to_html|inline_css(source('@styles/foundation-emails.css'), source('@styles/email.css')) %}
+  <container>
+    {% block content %}{% endblock %}
+    <row>
+      <columns>
+        <p>We can't wait to see you there,</p>
+        <p>Your friends at Universal Travel</p>
+      </columns>
+    </row>
+  </container>
+{% endapply %}
