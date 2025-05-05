@@ -5,4 +5,4 @@ workers:
 
     messenger:
         cmd: ['symfony', 'console', 'messenger:consume', 'async']
-        watch: ['config', 'src', 'templates', 'vendor']
+        watch: ['config', 'src', 'templates']
