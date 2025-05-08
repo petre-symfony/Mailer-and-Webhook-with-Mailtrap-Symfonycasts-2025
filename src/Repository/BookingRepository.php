@@ -43,4 +43,18 @@ class BookingRepository extends ServiceEntityRepository {
 			->getQuery()
 			->getResult();
 	}
+
+	/**
+	 * @return Booking[]
+	 */
+	public function findBookingsToRemind(): array {
+		return $this->createQueryBuilder('b')
+			->andWhere('b.reminderSentAt IS NULL')
+			->andWhere('b.date <= :future')
+			->andWhere('b.date > :now')
+			->setParameter('future', new \DateTimeImmutable('+7 days'))
+			->setParameter('now', new DateTimeImmutable('now'))
+			->getQuery()
+			->getResult();
+	}
 }
