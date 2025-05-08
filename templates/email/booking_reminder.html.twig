@@ -1,0 +1,31 @@
+{% extends 'email/layout.html.twig' %}
+
+{% block content %}
+  <row>
+    <columns>
+      <spacer size="40"></spacer>
+      <p class="accent-title">Coming soon!</p>
+      <h1 class="trip-name">{{ trip.name }}</h1>
+      <img
+          class="trip-image float-center"
+          src="{{ email.image('@images/%s.png'|format(trip.slug)) }}"
+          alt="{{ trip.name }}"
+      >
+    </columns>
+  </row>
+  <row>
+    <columns>
+      <p class="accent-title">Departure: {{ booking.date|date('Y-m-d') }}</p>
+    </columns>
+  </row>
+  <row>
+    <columns>
+      <button class="expanded rounded center" href="{{ url('booking_show', {uid: booking.uid}) }}">
+        Manage Booking
+      </button>
+      <button class="expanded rounded center secondary" href="{{ url('bookings', {uid: customer.uid}) }}">
+        My Account
+      </button>
+    </columns>
+  </row>
+{%  endblock %}
