@@ -3,13 +3,18 @@
 namespace App\Tests\Functional\Command;
 
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Zenstruck\Foundry\Test\Factories;
+use Zenstruck\Foundry\Test\ResetDatabase;
+use Zenstruck\Mailer\Test\InteractsWithMailer;
 
 class SendBookingRemainderCommandTest extends KernelTestCase {
-	public function testSomething(): void {
-		$kernel = self::bootKernel();
+	use ResetDatabase, Factories, InteractsWithMailer;
 
-		$this->assertSame('test', $kernel->getEnvironment());
-		// $routerService = static::getContainer()->get('router');
-		// $myCustomService = static::getContainer()->get(CustomService::class);
+	public function testNoReminderSent() {
+		$this->markTestIncomplete();
+	}
+
+	public function testReminderSent() {
+		$this->markTestIncomplete();
 	}
 }
