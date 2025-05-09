@@ -17,11 +17,17 @@ class BookingEmailFactory {
 	}
 
 	public function createBookingConfirmation(Booking $booking): TemplatedEmail {
-		
+		return $this->createEmail($booking, 'booking')
+			->subject('Booking Confirmation for '. $booking->getTrip()->getName())
+			->htmlTemplate('email/booking_confirmation.html.twig')
+		;
 	}
 
 	public function createBookingRemainder(Booking $booking): TemplatedEmail {
-		
+		return $this->createEmail($booking, 'booking_reminder')
+			->subject('Booking Reminder for '. $booking->getTrip()->getName())
+			->htmlTemplate('email/booking_reminder.html.twig')
+		;
 	}
 
 	private function createEmail(Booking $booking, string $tag): TemplatedEmail {
