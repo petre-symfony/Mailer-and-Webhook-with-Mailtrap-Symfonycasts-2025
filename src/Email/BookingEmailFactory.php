@@ -20,6 +20,7 @@ class BookingEmailFactory {
 		return $this->createEmail($booking, 'booking')
 			->subject('Booking Confirmation for '. $booking->getTrip()->getName())
 			->htmlTemplate('email/booking_confirmation.html.twig')
+			->attachFromPath($this->termsPath, 'Terms of service.pdf')
 		;
 	}
 
