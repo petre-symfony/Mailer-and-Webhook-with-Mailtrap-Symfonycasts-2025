@@ -2,7 +2,9 @@
 
 namespace App;
 
+use Symfony\Component\Console\Messenger\RunCommandMessage;
 use Symfony\Component\Scheduler\Attribute\AsSchedule;
+use Symfony\Component\Scheduler\RecurringMessage;
 use Symfony\Component\Scheduler\Schedule as SymfonySchedule;
 use Symfony\Component\Scheduler\ScheduleProviderInterface;
 use Symfony\Contracts\Cache\CacheInterface;
@@ -16,6 +18,10 @@ class Schedule implements ScheduleProviderInterface {
 
 	public function getSchedule(): SymfonySchedule {
 		return (new SymfonySchedule())
+			->add(RecurringMessage::cron(
+				'0 0 * * *',
+				new RunCommandMessage('app:send-booking-reminders')
+			))
 			->stateful($this->cache) // ensure missed tasks are executed
 			->processOnlyLastMissedRun(true) // ensure only last missed task is run
 
