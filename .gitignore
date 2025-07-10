@@ -23,5 +23,5 @@
 /phpunit.xml
 .phpunit.result.cache
 ###< phpunit/phpunit ###
-tutorial
+tutorial/
 /.idea
