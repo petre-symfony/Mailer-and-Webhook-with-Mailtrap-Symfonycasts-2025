@@ -18,10 +18,6 @@ class Schedule implements ScheduleProviderInterface {
 
 	public function getSchedule(): SymfonySchedule {
 		return (new SymfonySchedule())
-			->add(RecurringMessage::cron(
-				'0 0 * * *',
-				new RunCommandMessage('app:send-booking-reminders')
-			))
 			->stateful($this->cache) // ensure missed tasks are executed
 			->processOnlyLastMissedRun(true) // ensure only last missed task is run
 
