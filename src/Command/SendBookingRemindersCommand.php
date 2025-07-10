@@ -17,7 +17,7 @@ use Symfony\Component\Scheduler\Attribute\AsCronTask;
 	name: 'app:send-booking-reminders',
 	description: 'Send booking reminder emails',
 )]
-#[AsCronTask('# # * * *')]
+#[AsCronTask('#midnight')]
 class SendBookingRemindersCommand extends Command {
 	public function __construct(
 		private BookingRepository $bookingRepo,
